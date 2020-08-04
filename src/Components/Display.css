@@ -7,9 +7,14 @@
 #main {
         background-color: #ea3c53;
         width: 1000px;
-        height: 400px;
+        height: 200px;
         border-radius: 25px;
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+}
+
+#letterContainer {
+        margin-bottom: 10px;
 }

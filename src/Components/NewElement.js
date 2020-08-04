@@ -41,8 +41,6 @@ export default class NewElement extends Component {
                 var children = document.getElementById("buttons").childNodes;
                 for (var i = 0; i < children.length; i++) {
                         let elem = children[i];
-
-                        console.log(str + "==" + elem.childNodes[1].innerText);
                         if (str === elem.childNodes[1].innerText) {
                                 return true;
                         }
