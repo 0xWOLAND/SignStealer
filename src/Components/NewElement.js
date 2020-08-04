@@ -1,20 +1,86 @@
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import "./NewElement.css";
-
+import Btn from "./Btn";
+import "./Btn.css";
 export default class NewElement extends Component {
         constructor(props) {
                 super(props);
                 this.render = this.render.bind(this);
                 this.handleSubmit = this.handleSubmit.bind(this);
                 this.handleChange = this.handleChange.bind(this);
-                this.state = { value: "" };
+                this.getString = this.getString.bind(this);
+                this.doesExist = this.doesExist.bind(this);
+                this.state = { value: "", num: 1 };
+        }
+
+        getString(n) {
+                var x = n - 1,
+                        r26 = x.toString(26),
+                        baseCharCode = "A".charCodeAt(0);
+
+                var arr = r26.split(""),
+                        len = arr.length;
+
+                var newArr = arr.map(function (val, i) {
+                        val = parseInt(val, 26);
+
+                        if (i === 0 && len > 1) {
+                                val = val - 1;
+                        }
+
+                        return String.fromCharCode(baseCharCode + val);
+                });
+                return newArr.join("");
         }
 
         handleChange(e) {
                 this.setState({ value: e.target.value });
         }
+        doesExist(str) {
+                var children = document.getElementById("buttons").childNodes;
+                for (var i = 0; i < children.length; i++) {
+                        let elem = children[i];
+
+                        console.log(str + "==" + elem.childNodes[1].innerText);
+                        if (str === elem.childNodes[1].innerText) {
+                                return true;
+                        }
+                }
+                return false;
+        }
         handleSubmit(props) {
-                console.log(this.state.value);
+                let letter = this.getString(this.state.num);
+                let sign = this.state.value;
+                if (this.doesExist(sign)) {
+                        alert("You have already added this sign!");
+                } else {
+                        var elem = document.createElement("div");
+                        elem.id = "ele_container";
+                        elem.onclick = function () {
+                                document.getElementById(
+                                        "letters"
+                                ).innerText += letter;
+                        };
+                        var letterDiv = document.createElement("div");
+                        letterDiv.className = "ele";
+                        var letterH1 = document.createElement("h1");
+                        letterH1.innerText = letter;
+                        letterDiv.append(letterH1);
+                        var signH3 = document.createElement("h3");
+                        signH3.id = "sign";
+                        if (sign === "") {
+                                letterDiv.className += " empty";
+                        }
+                        signH3.innerText = sign;
+
+                        elem.append(letterDiv);
+                        elem.append(signH3);
+
+                        document.getElementById("buttons").append(elem);
+                        let tmp = this.state.num + 1;
+                        this.setState({ num: tmp });
+                }
         }
 
         render() {
@@ -39,7 +105,7 @@ export default class NewElement extends Component {
                                                                         .handleSubmit
                                                         }
                                                 >
-                                                        Button
+                                                        Add
                                                 </button>
                                         </div>
                                 </div>

@@ -5,7 +5,7 @@ export default class UserInput extends Component {
         render() {
                 return (
                         <div id="buttons">
-                                <Btn letter="A" sign="nose" />
+                              
                         </div>
                 );
         }

@@ -6,7 +6,9 @@
         justify-content: center;
         align-items: center;
 }
-
+.empty {
+        margin-bottom: 33px;
+}
 #ele_container {
         margin: 10px;
         margin-bottom: 0;
