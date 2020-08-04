@@ -1,0 +1,12 @@
+/* Colors:
+        -#008FFF
+        -#00980F
+        -#ea3c53
+*/
+
+#main {
+        background-color: #ea3c53;
+        width: 1000px;
+        height: 400px;
+        border-radius: 25px;
+}
