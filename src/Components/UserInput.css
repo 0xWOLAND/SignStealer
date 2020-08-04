@@ -1,0 +1,14 @@
+#buttons {
+        margin: 20px;
+        padding: 10px;
+        background-color: #00980F;
+        width: 1000px;        
+        border-radius: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+}
+#letters {
+        color: whitesmoke;
+}

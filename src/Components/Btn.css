@@ -1,0 +1,21 @@
+.ele {
+        width: 75px;
+        height: 100px;
+        background-color: antiquewhite;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+#ele_container {
+        margin: 10px;
+        margin-bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+}
+
+#sign {
+        margin: 0;
+}
