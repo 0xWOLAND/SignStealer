@@ -6,7 +6,8 @@ export default class Display extends Component {
         render(){
                 return <div id="main">
                         <div id="letters"></div>
-                        <input />
+                        <button type="button" class="btn btn-secondary btn-lg">Large button</button>
+
                 </div>
         }
 }
