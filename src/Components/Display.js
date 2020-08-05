@@ -39,6 +39,13 @@ export default class Display extends Component {
                 });
         }
         async predict() {
+                db.collection("Elements")
+                        .get()
+                        .then(function (querySnapshot) {
+                                querySnapshot.forEach(function (doc) {
+                                        console.log(doc.id, " => ", doc.data());
+                                });
+                        });
                 const X = tf.tensor3d([
                         [[4], [1], [2]],
                         [[3], [5], [2]],
@@ -51,26 +58,29 @@ export default class Display extends Component {
                         [[5], [5], [5]],
                 ]);
                 const y = tf.tensor3d([
-                        [[0]],
-                        [[1]],
-                        [[0]],
-                        [[0]],
-                        [[1]],
-                        [[0]],
-                        [[1]],
-                        [[1]],
-                        [[0]],
+                        [[0], [0], [0]],
+                        [[0], [0], [0]],
+                        [[0], [0], [0]],
+                        [[0], [0], [0]],
+                        [[0], [0], [0]],
+                        [[0], [0], [0]],
+                        [[0], [0], [0]],
+                        [[0], [0], [0]],
+                        [[0], [0], [0]],
                 ]);
                 console.log(X.shape);
                 console.log(y.shape);
                 const model = sequential();
-                model.add(tf.layers.dense({ units: 1, inputShape: [, 1] }));
+                model.add(tf.layers.dense({ units: 1, inputShape: [3, 1] }));
                 model.add(tf.layers.dense({ units: 1, activation: "sigmoid" }));
+
                 model.compile({
                         optimizer: "sgd",
                         loss: "binaryCrossentropy",
                         metrics: ["mse", "acc"],
                 });
+                model.fit(X, y, { epochs: 250 });
+                console.log(model.predict(tf.tensor3d([[[5], [2], [9]]])).print());
         }
         render() {
                 return (
